@@ -1,0 +1,637 @@
+ERROR - 2026-01-06 19:21:40 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:21:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-01-06 19:21:46 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:21:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-01-06 19:22:40 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:22:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-01-06 19:24:02 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:24:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-01-06 19:24:28 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:24:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-01-06 19:24:36 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', '', '', '', 3306, '', 0)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\app\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+#7 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+#8 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\Web-Akuntansi-Usaha-Distributor\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-01-06 19:24:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: CekDatabase]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `products`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\CekDatabase.php(14): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CekDatabase->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CekDatabase))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:34:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:34:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:34:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:38:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:38:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:45:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:50:44 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:50:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:50:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:50:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:51:01 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:51:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:51:50 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:51:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:51:53 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:54:57 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:54:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:54:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:55:00 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:55:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 19:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 19:57:02 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 19:57:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:01:57 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:02:47 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:02:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:02:49 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:02:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:02:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:03:22 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:03:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:03:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:03:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:03:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:03:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:03:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:03:56 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:03:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:04:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:04:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:04:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:10:45 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:10:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:11:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:12:09 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:12:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:16:41 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:16:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:16:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:17:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:18:00 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:18:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:18:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:22:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:23:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:28:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:29:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:29:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:29:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:29:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:29:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:30:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:30:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:30:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:31:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:33:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:33:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:36:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:36:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:38:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:38:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:39:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-06 20:40:17 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH\Views\produk\index.php on line 32.
+ 1 APPPATH\Views\produk\index.php(32): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Web-Akuntansi-Usaha-Distributor\\app\\Views\\produk\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1199): CodeIgniter\View\View->render('produk/index', [], true)
+ 5 APPPATH\Controllers\Produk.php(28): view('produk/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Produk->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Produk))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-06 20:40:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-06 20:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
