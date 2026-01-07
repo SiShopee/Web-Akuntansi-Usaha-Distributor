@@ -31,41 +31,45 @@ class Karyawan extends BaseController
 
     public function store()
     {
-        // 1. Simpan Data Karyawan (Kode Lama)
-        $nama = $this->request->getPost('nama_lengkap');
-        $posisi = $this->request->getPost('posisi');
+        // 1. Panggil Model
+        $employeeModel = new \App\Models\EmployeeModel(); // Model Karyawan
+        $userModel = new \App\Models\UserModel();         // Model User
+        
+        // 2. Ambil Data dari Form Admin
+        $nama    = $this->request->getPost('nama_lengkap');
+        $posisi  = $this->request->getPost('posisi');
+        $gaji    = $this->request->getPost('gaji_pokok');
+        $tunj    = $this->request->getPost('tunjangan');
+        $hp      = $this->request->getPost('no_hp');
 
-        $this->employeeModel->save([
+        // 3. Simpan ke Tabel Employees (Data Karyawan)
+        $employeeModel->save([
             'nama_lengkap' => $nama,
             'posisi'       => $posisi,
-            'no_hp'        => $this->request->getPost('no_hp'),
-            'gaji_pokok'   => $this->request->getPost('gaji_pokok'),
-            'tunjangan'    => $this->request->getPost('tunjangan'),
+            'gaji_pokok'   => $gaji,
+            'tunjangan'    => $tunj,
+            'no_hp'        => $hp
         ]);
 
-        // 2. [BARU] Buatkan Akun Login Otomatis
-        $userModel = new \App\Models\UserModel();
+        // 4. OTOMATIS BUAT AKUN LOGIN (Tabel Users)
+        // Kita bikin username otomatis dari nama (huruf kecil, tanpa spasi)
+        // Contoh: "Wira Ganteng" jadi "wiraganteng"
+        $usernameAuto = strtolower(str_replace(' ', '', $nama));
         
-        // Ambil kata pertama nama sebagai username (biar simpel)
-        $arrNama = explode(' ', trim($nama));
-        $username = strtolower($arrNama[0]);
-        
-        // Normalisasi role (posisi di karyawan -> role di users)
-        $role = 'karyawan';
-        if(stripos($posisi, 'Kasir') !== false) $role = 'kasir';
-        if(stripos($posisi, 'Sales') !== false) $role = 'sales';
-        if(stripos($posisi, 'Gudang') !== false) $role = 'staff_gudang';
-
-        // Cek dulu user sudah ada belum, kalau belum buatkan
-        if (!$userModel->where('username', $username)->first()) {
-            $userModel->save([
-                'username' => $username,
-                'password' => password_hash('password123', PASSWORD_DEFAULT), // Default
-                'role'     => $role
-            ]);
+        // Cek dulu apakah username sudah ada? Kalau ada tambah angka acak
+        if ($userModel->where('username', $usernameAuto)->first()) {
+            $usernameAuto .= rand(10, 99);
         }
 
-        return redirect()->to('/karyawan')->with('success', 'Karyawan & Akun Login berhasil dibuat.');
+        $userModel->save([
+            'username'     => $usernameAuto,
+            'password'     => password_hash('password123', PASSWORD_DEFAULT), // Password Default
+            'role'         => strtolower(str_replace(' ', '_', $posisi)), // Sesuaikan format role (misal: Staff Gudang -> staff_gudang)
+            'nama_lengkap' => $nama,
+            'foto'         => 'default.png'
+        ]);
+
+        return redirect()->to('/karyawan')->with('success', 'Karyawan berhasil ditambahkan & Akun Login otomatis dibuat (Pass: password123)');
     }
 
     // --- FITUR EDIT DATA KARYAWAN ---

@@ -66,59 +66,54 @@ class Auth extends BaseController
     {
         $validation = \Config\Services::validation();
         $userModel = new \App\Models\UserModel();
+        $employeeModel = new \App\Models\EmployeeModel(); // Panggil Model Karyawan
 
-        // 1. ATURAN VALIDASI (Versi Perbaikan: Pakai Kurung Siku [])
+        // --- 1. VALIDASI (Sama seperti sebelumnya) ---
         $rules = [
-            'username' => [
-                'rules'  => 'required|min_length[3]|is_unique[users.username]', // <--- PERBAIKAN DI SINI
-                'errors' => [
-                    'required' => 'Username harus diisi.',
-                    'min_length' => 'Username minimal 3 karakter.',
-                    'is_unique' => 'Username sudah terpakai! Ganti yang lain.'
-                ]
-            ],
-            'password' => [
-                'rules'  => 'required|min_length[4]', // <--- PERBAIKAN DI SINI
-                'errors' => [
-                    'min_length' => 'Password minimal 4 karakter.'
-                ]
-            ],
-            'password_confirm' => [
-                'rules'  => 'matches[password]',
-                'errors' => [
-                    'matches' => 'Konfirmasi Password tidak cocok!'
-                ]
-            ],
-            'role' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Jabatan belum dipilih.'
-                ]
-            ]
+            'username' => 'required|min_length[3]|is_unique[users.username]',
+            'password' => 'required|min_length[4]',
+            'password_confirm' => 'matches[password]',
+            'role' => 'required'
         ];
 
-        // 2. JALANKAN VALIDASI
         if (!$this->validate($rules)) {
             $errors = $validation->getErrors();
             $firstError = array_values($errors)[0]; 
             return redirect()->back()->withInput()->with('error', $firstError);
         }
 
-        // 3. SIAPKAN DATA
-        $data = [
-            'username'     => $this->request->getVar('username'),
+        // --- 2. SIMPAN KE TABEL USERS (Buat Akun Login) ---
+        $username = $this->request->getVar('username');
+        $role     = $this->request->getVar('role');
+
+        $userData = [
+            'username'     => $username,
             'password'     => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'role'         => $this->request->getVar('role'),
-            'nama_lengkap' => $this->request->getVar('username'),
+            'role'         => $role,
+            'nama_lengkap' => $username, // Pakai username sebagai nama awal
             'foto'         => 'default.png'
         ];
+        
+        $userModel->insert($userData);
 
-        // 4. SIMPAN
-        if ($userModel->insert($data)) {
-            return redirect()->to('/login')->with('success', 'Akun berhasil dibuat! Silakan Login.');
-        } else {
-            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan ke database.');
-        }
+        // --- 3. OTOMATIS SIMPAN KE TABEL EMPLOYEES (Buat Data Gaji) ---
+        // Karena dia daftar sendiri, Gaji & No HP kita isi default dulu (0 dan -)
+        // Nanti Admin yang harus edit gajinya.
+        
+        // Mapping Role ke Posisi yang rapi
+        $posisiNama = ucwords(str_replace('_', ' ', $role)); // misal: staff_gudang -> Staff Gudang
+
+        $empData = [
+            'nama_lengkap' => $username, // Samakan dengan user
+            'posisi'       => $posisiNama,
+            'gaji_pokok'   => 0,   // Default 0
+            'tunjangan'    => 0,   // Default 0
+            'no_hp'        => '-'  // Default strip
+        ];
+
+        $employeeModel->insert($empData);
+
+        return redirect()->to('/login')->with('success', 'Akun berhasil dibuat & Data Karyawan terdaftar!');
     }
 
     public function fix_password()

@@ -10,41 +10,78 @@ class Laporan extends BaseController
 {
     public function index()
     {
-        $saleModel = new SaleModel();
-        $saleItemModel = new SaleItemModel();
-        $payrollModel = new PayrollModel();
-        
-        // 1. Hitung Total Pemasukan (Omzet Penjualan)
-        $queryPenjualan = $saleModel->selectSum('grand_total')->get()->getRow();
-        $total_penjualan = $queryPenjualan->grand_total ?? 0;
+        // 1. Cek Login
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
 
-        // 2. Hitung Total Pengeluaran Gaji
-        $queryGaji = $payrollModel->selectSum('total_gaji_bersih')->get()->getRow();
-        $total_gaji = $queryGaji->total_gaji_bersih ?? 0;
-
-        // 3. Hitung Modal Barang (HPP) - Agak Advance
-        // Kita butuh join tabel sale_items dengan products untuk tahu harga beli aslinya
         $db = \Config\Database::connect();
-        $queryModal = $db->query("
-            SELECT SUM(sale_items.qty * products.harga_beli) as total_modal 
+
+        // --- A. DETEKSI NAMA KOLOM DULU (Wajib di Awal) ---
+        
+        // Cek Nama Kolom Quantity (qty atau quantity?)
+        if ($db->fieldExists('quantity', 'sale_items')) {
+            $kolomQty = 'quantity';
+        } else {
+            $kolomQty = 'qty';
+        }
+
+        // Cek Nama Kolom Produk (nama, nama_barang, dll)
+        if ($db->fieldExists('nama_barang', 'products')) {
+            $kolomNama = 'nama_barang'; // Sesuai databasemu
+        } else {
+            $kolomNama = 'nama_produk';
+        }
+
+        // --- B. HITUNG OMZET (Metode "Scan Barang" - Paling Akurat) ---
+        // Kita hitung: Jumlah Barang x Harga Jual (mengabaikan tabel 'sales' yang error 0)
+        $queryOmzet = $db->query("
+            SELECT SUM(products.harga_jual * sale_items.$kolomQty) as total_omzet 
             FROM sale_items 
             JOIN products ON sale_items.product_id = products.id
         ");
-        $total_modal = $queryModal->getRow()->total_modal ?? 0;
+        $omzet = $queryOmzet->getRow()->total_omzet ?? 0;
 
-        // 4. Hitung Laba Bersih
-        $laba_bersih = $total_penjualan - ($total_modal + $total_gaji);
+        // --- C. HITUNG MODAL (HPP) ---
+        $queryModal = $db->query("
+            SELECT SUM(products.harga_beli * sale_items.$kolomQty) as total_modal 
+            FROM sale_items 
+            JOIN products ON sale_items.product_id = products.id
+        ");
+        $modal = $queryModal->getRow()->total_modal ?? 0;
 
+        // --- D. HITUNG GAJI ---
+        $queryGaji = $db->query("SELECT SUM(total_gaji_bersih) as total FROM payroll");
+        $gaji = $queryGaji->getRow()->total ?? 0;
+
+        // --- E. LABA BERSIH ---
+        $laba_bersih = $omzet - $modal - $gaji;
+
+        // --- F. AMBIL TOP 5 PRODUK ---
+        $queryTop = $db->query("
+            SELECT 
+                products.$kolomNama as nama_produk, 
+                SUM(sale_items.$kolomQty) as terjual, 
+                SUM(sale_items.subtotal) as total_uang
+            FROM sale_items
+            JOIN products ON sale_items.product_id = products.id
+            GROUP BY products.id
+            ORDER BY terjual DESC
+            LIMIT 5
+        ");
+        $top_products = $queryTop->getResultArray();
+
+        // Kirim Data
         $data = [
-            'title'           => 'Laporan Keuangan',
-            'total_penjualan' => $total_penjualan,
-            'total_modal'     => $total_modal,
-            'total_gaji'      => $total_gaji,
-            'laba_bersih'     => $laba_bersih,
-            // Kita kirim juga data transaksi terakhir buat tabel
-            'recent_sales'    => $saleModel->orderBy('id', 'DESC')->findAll(5) 
+            'title' => 'Laporan Keuangan',
+            'user_role' => session()->get('role'),
+            'omzet' => $omzet,
+            'modal' => $modal,
+            'gaji'  => $gaji,
+            'laba'  => $laba_bersih,
+            'top_products' => $top_products
         ];
 
-        return view('laporan/index', $data);
+        return view('laporan_view', $data);
     }
 }

@@ -26,39 +26,59 @@
             color: var(--text-dark);
         }
         
-        /* --- 2. SIDEBAR ELEGANT --- */
+        /* --- 2. SIDEBAR ELEGANT (Versi High Contrast) --- */
         #sidebar {
             min-width: 260px;
             max-width: 260px;
             min-height: 100vh;
-            background: linear-gradient(180deg, #1e272e 0%, #2c3e50 100%); /* Gradasi halus */
+            background: linear-gradient(180deg, #1e272e 0%, #2c3e50 100%);
             color: #fff;
             box-shadow: 4px 0 10px rgba(0,0,0,0.1);
             z-index: 100;
         }
 
+        /* Menu Link Biasa - Dibuat Putih Terang */
         #sidebar .nav-link { 
-            color: rgba(255,255,255,0.7); 
+            color: #ffffff;          /* Putih Mutlak */
+            font-weight: 500;        /* Agak tebal sedikit biar jelas */
             padding: 14px 25px; 
             font-size: 0.95rem;
-            border-left: 4px solid transparent; /* Garis indikator */
+            border-left: 4px solid transparent; 
             transition: all 0.3s;
+            opacity: 0.9;            /* Sedikit transparansi biar tidak menusuk, tapi tetap terang */
         }
 
-        /* Efek Hover di Menu */
+        /* Judul Kategori Kecil (Logistik, Penjualan, dll) */
+        /* Sebelumnya ini gelap banget, sekarang kita terangkan */
+        #sidebar .text-muted {
+            color: #bdc3c7 !important; /* Abu-abu Terang (Silver) */
+            font-weight: bold;
+            letter-spacing: 1px;       /* Jarak antar huruf biar lega */
+            opacity: 1 !important;
+        }
+
+        /* Efek Hover (Saat mouse nempel) */
         #sidebar .nav-link:hover { 
             color: #fff; 
-            background-color: rgba(255,255,255,0.05); 
-            border-left: 4px solid var(--accent-color);
-            padding-left: 30px; /* Geser sedikit ke kanan */
+            background-color: rgba(255,255,255,0.1); /* Background putih transparan */
+            border-left: 4px solid #3498db;          /* Garis Biru */
+            padding-left: 30px; 
+            opacity: 1;
         }
 
-        /* Menu yang Aktif */
+        /* Menu yang Sedang Aktif (Halaman yang dibuka) */
         #sidebar .nav-link.active { 
-            color: #fff; 
-            background: rgba(52, 152, 219, 0.15); 
-            border-left: 4px solid var(--accent-color);
+            color: #ffeaa7;          /* Warna Emas Muda (Biar beda dengan yang lain) */
+            background: rgba(255, 255, 255, 0.15); 
+            border-left: 4px solid #f1c40f; /* Garis Emas */
             font-weight: bold;
+            opacity: 1;
+        }
+        
+        /* Ikon di dalam menu */
+        #sidebar .nav-link i {
+            width: 25px;            /* Lebar ikon tetap agar teks rata */
+            text-align: center;
         }
         
         /* --- 3. NAVBAR PUTIH BERSIH --- */
