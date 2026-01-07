@@ -39,6 +39,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="<?= base_url('riwayat') ?>" class="nav-link">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Riwayat Stok
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="<?= base_url('transaksi') ?>" class="nav-link">
                     <i class="fa-solid fa-cart-shopping"></i> Kasir / Transaksi
                 </a>

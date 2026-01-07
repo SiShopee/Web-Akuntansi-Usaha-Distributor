@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
+use App\Models\StockHistoryModel;
 
 class Produk extends BaseController
 {
@@ -36,7 +37,7 @@ class Produk extends BaseController
 
     public function store()
     {
-        // 2. Simpan data dari form ke database
+        // 1. Simpan data ke tabel products
         $this->productModel->save([
             'nama_barang' => $this->request->getPost('nama_barang'),
             'kode_barang' => $this->request->getPost('kode_barang'),
@@ -45,12 +46,60 @@ class Produk extends BaseController
             'stok'        => $this->request->getPost('stok'),
         ]);
 
-        return redirect()->to('/produk');
+        // 2. Ambil ID barang yang barusan dibuat
+        $newID = $this->productModel->getInsertID();
+
+        // 3. Catat otomatis ke tabel stock_histories
+        $historyModel = new \App\Models\StockHistoryModel();
+        $historyModel->save([
+            'product_id' => $newID,
+            'type'       => 'masuk',
+            'qty'        => $this->request->getPost('stok'),
+            'keterangan' => 'Stok Awal Barang Baru'
+        ]);
+
+        return redirect()->to('/produk')->with('success', 'Barang berhasil ditambahkan & tercatat di riwayat!');
     }
 
     public function delete($id)
     {
         $this->productModel->delete($id);
         return redirect()->to('/produk');
+    }
+
+    public function restock($id)
+    {
+        $model = new \App\Models\ProductModel(); // Pastikan pakai \ (backslash) jika error
+        $data = [
+            'title'   => 'Restock Barang Masuk',
+            'product' => $model->find($id)
+        ];
+        return view('produk/restock', $data);
+    }
+
+    // Proses Simpan Restock
+    public function process_restock()
+    {
+        $productModel = new \App\Models\ProductModel();
+        $historyModel = new \App\Models\StockHistoryModel();
+
+        $id  = $this->request->getPost('id');
+        $qty = $this->request->getPost('qty');
+        $ket = $this->request->getPost('keterangan');
+
+        // 1. Update Stok di Master Produk (Bertambah)
+        $product = $productModel->find($id);
+        $newStock = $product['stok'] + $qty;
+        $productModel->update($id, ['stok' => $newStock]);
+
+        // 2. Catat Riwayat Masuk
+        $historyModel->save([
+            'product_id' => $id,
+            'type'       => 'masuk',
+            'qty'        => $qty,
+            'keterangan' => $ket
+        ]);
+
+        return redirect()->to('/produk')->with('success', 'Stok berhasil ditambahkan!');
     }
 }

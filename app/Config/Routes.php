@@ -17,6 +17,11 @@ $routes->get('logout', 'Auth::logout');
 $routes->get('dashboard', 'Dashboard::index');
 $routes->get('reset-admin', 'Auth::reset_admin');
 
+// Rute Registrasi
+$routes->get('register', 'Auth::register');
+$routes->post('auth/process_register', 'Auth::process_register');
+$routes->get('fix-password', 'Auth::fix_password');
+
 // Rute Manajemen Produk
 $routes->get('produk', 'Produk::index');          // Tampilkan tabel
 $routes->get('produk/create', 'Produk::create');  // Tampilkan form tambah
@@ -46,3 +51,9 @@ $routes->get('gaji/create', 'Gaji::create');
 $routes->post('gaji/process', 'Gaji::process');
 
 $routes->get('laporan', 'Laporan::index');
+
+$routes->get('produk/restock/(:num)', 'Produk::restock/$1');
+$routes->post('produk/process_restock', 'Produk::process_restock');
+
+// Rute Riwayat Stok
+$routes->get('riwayat', 'Riwayat::index');

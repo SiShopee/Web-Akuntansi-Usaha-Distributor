@@ -37,10 +37,14 @@
                                 </span>
                             </td>
                             <td>
+                                <a href="<?= base_url('produk/restock/'.$p['id']) ?>" class="btn btn-success btn-sm" title="Tambah Stok">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+
                                 <a href="<?= base_url('produk/delete/'.$p['id']) ?>" 
-                                   class="btn btn-danger btn-sm"
-                                   onclick="return confirm('Yakin mau dihapus?')">
-                                   <i class="fa-solid fa-trash"></i>
+                                class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Yakin mau dihapus?')">
+                                <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

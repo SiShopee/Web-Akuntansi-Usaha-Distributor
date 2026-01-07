@@ -6,6 +6,7 @@ use App\Models\SaleModel;
 use App\Models\SaleItemModel;
 use App\Models\ProductModel;
 use CodeIgniter\Controller;
+use App\Models\StockHistoryModel;
 
 class Transaksi extends BaseController
 {
@@ -95,9 +96,11 @@ class Transaksi extends BaseController
         $saleModel->insert($saleData);
         $sale_id = $saleModel->getInsertID(); // Ambil ID transaksi yang baru dibuat
 
+        $stockHistoryModel = new StockHistoryModel(); // Load Model Baru
+
         // B. SIMPAN RINCIAN BARANG & KURANGI STOK
         foreach ($cart as $item) {
-            // Simpan ke sale_items
+            // 1. Simpan ke sale_items (Kode Lama)
             $saleItemModel->insert([
                 'sale_id'       => $sale_id,
                 'product_id'    => $item['id'],
@@ -106,13 +109,18 @@ class Transaksi extends BaseController
                 'subtotal'      => $item['price'] * $item['qty']
             ]);
 
-            // Kurangi Stok di tabel products
-            // Ambil stok lama dulu
+            // 2. Kurangi Stok di tabel products (Kode Lama)
             $currentProduct = $productModel->find($item['id']);
             $newStock = $currentProduct['stok'] - $item['qty'];
-
-            // Update stok baru
             $productModel->update($item['id'], ['stok' => $newStock]);
+
+            // 3. [BARU] Catat Riwayat Barang Keluar
+            $stockHistoryModel->save([
+                'product_id' => $item['id'],
+                'type'       => 'keluar',
+                'qty'        => $item['qty'],
+                'keterangan' => 'Penjualan No: ' . $saleData['no_faktur']
+            ]);
         }
 
         $db->transComplete(); // Selesai transaksi
