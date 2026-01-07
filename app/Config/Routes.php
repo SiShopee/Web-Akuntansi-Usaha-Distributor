@@ -10,17 +10,20 @@ $routes->get('/', 'Home::index');
 // Rute untuk pengecekan database
 $routes->get('CekDatabase', 'CekDatabase::index');
 
-// Rute Login
+// --- Rute Login (PERBAIKAN) ---
 $routes->get('login', 'Auth::index');
-$routes->post('auth/process_login', 'Auth::process_login');
+
+// PENTING: Arahkan 'login/auth' ke 'Auth::process_login'
+// Karena Controller kamu namanya Auth.php, bukan Login.php
+$routes->post('login/auth', 'Auth::process_login'); 
 $routes->get('logout', 'Auth::logout');
 $routes->get('dashboard', 'Dashboard::index');
-$routes->get('reset-admin', 'Auth::reset_admin');
 
-// Rute Registrasi
+// --- Rute Registrasi (PERBAIKAN) ---
 $routes->get('register', 'Auth::register');
-$routes->post('auth/process_register', 'Auth::process_register');
-$routes->get('fix-password', 'Auth::fix_password');
+
+// PENTING: Arahkan 'register/store' ke 'Auth::process_register'
+$routes->post('register/store', 'Auth::process_register');
 
 // Rute Manajemen Produk
 $routes->get('produk', 'Produk::index');          // Tampilkan tabel
@@ -38,7 +41,9 @@ $routes->post('transaksi/process_payment', 'Transaksi::process_payment');
 $routes->get('karyawan', 'Karyawan::index');
 $routes->get('karyawan/create', 'Karyawan::create');
 $routes->post('karyawan/store', 'Karyawan::store');
-$routes->get('karyawan/delete/(:num)', 'Karyawan::delete/$1');
+$routes->get('karyawan/edit/(:num)', 'Karyawan::edit/$1');    // URL untuk buka form edit
+$routes->post('karyawan/update/(:num)', 'Karyawan::update/$1'); // URL untuk simpan edit
+$routes->get('karyawan/delete/(:num)', 'Karyawan::delete/$1');  // URL untuk hapus
 
 // Rute Absensi
 $routes->get('absensi', 'Absensi::index');
@@ -57,3 +62,6 @@ $routes->post('produk/process_restock', 'Produk::process_restock');
 
 // Rute Riwayat Stok
 $routes->get('riwayat', 'Riwayat::index');
+
+$routes->get('profil', 'Profil::index');
+$routes->post('profil/update', 'Profil::update');

@@ -68,9 +68,46 @@ class Karyawan extends BaseController
         return redirect()->to('/karyawan')->with('success', 'Karyawan & Akun Login berhasil dibuat.');
     }
 
+    // --- FITUR EDIT DATA KARYAWAN ---
+
+    public function edit($id)
+    {
+        // 1. Cari data karyawan berdasarkan ID
+        $karyawan = $this->employeeModel->find($id);
+
+        if (!$karyawan) {
+            return redirect()->to('/karyawan')->with('error', 'Data karyawan tidak ditemukan.');
+        }
+
+        $data = [
+            'title'     => 'Edit Data Karyawan',
+            'user_role' => session()->get('role'),
+            'karyawan'  => $karyawan
+        ];
+
+        return view('karyawan/edit', $data);
+    }
+
+    public function update($id)
+    {
+        // 2. Proses Simpan Perubahan
+        $this->employeeModel->save([
+            'id'           => $id, // KUNCI UTAMA: ID harus ada biar sistem tau ini UPDATE, bukan INSERT
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'posisi'       => $this->request->getPost('posisi'),
+            'no_hp'        => $this->request->getPost('no_hp'),
+            'gaji_pokok'   => $this->request->getPost('gaji_pokok'),
+            'tunjangan'    => $this->request->getPost('tunjangan'),
+        ]);
+
+        return redirect()->to('/karyawan')->with('success', 'Data karyawan berhasil diperbarui!');
+    }
+    
+    // --- FITUR HAPUS (Bonus, biar lengkap) ---
     public function delete($id)
     {
         $this->employeeModel->delete($id);
-        return redirect()->to('/karyawan')->with('success', 'Data karyawan dihapus.');
+        return redirect()->to('/karyawan')->with('success', 'Data karyawan berhasil dihapus.');
     }
+
 }

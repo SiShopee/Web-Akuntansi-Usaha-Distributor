@@ -64,60 +64,61 @@ class Auth extends BaseController
 
     public function process_register()
     {
-        $userModel = new UserModel();
-        $employeeModel = new \App\Models\EmployeeModel(); // Panggil model karyawan
+        $validation = \Config\Services::validation();
+        $userModel = new \App\Models\UserModel();
 
-        // Ambil input
-        $nama     = $this->request->getPost('nama_lengkap');
-        $hp       = $this->request->getPost('no_hp');
-        $username = $this->request->getPost('username');
-        $role     = $this->request->getPost('role');
-        $pass     = $this->request->getPost('password');
-        $passConf = $this->request->getPost('password_confirm');
+        // 1. ATURAN VALIDASI (Versi Perbaikan: Pakai Kurung Siku [])
+        $rules = [
+            'username' => [
+                'rules'  => 'required|min_length[3]|is_unique[users.username]', // <--- PERBAIKAN DI SINI
+                'errors' => [
+                    'required' => 'Username harus diisi.',
+                    'min_length' => 'Username minimal 3 karakter.',
+                    'is_unique' => 'Username sudah terpakai! Ganti yang lain.'
+                ]
+            ],
+            'password' => [
+                'rules'  => 'required|min_length[4]', // <--- PERBAIKAN DI SINI
+                'errors' => [
+                    'min_length' => 'Password minimal 4 karakter.'
+                ]
+            ],
+            'password_confirm' => [
+                'rules'  => 'matches[password]',
+                'errors' => [
+                    'matches' => 'Konfirmasi Password tidak cocok!'
+                ]
+            ],
+            'role' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Jabatan belum dipilih.'
+                ]
+            ]
+        ];
 
-        // 1. Validasi Password
-        if ($pass != $passConf) {
-            return redirect()->back()->with('error', 'Password konfirmasi tidak cocok!');
+        // 2. JALANKAN VALIDASI
+        if (!$this->validate($rules)) {
+            $errors = $validation->getErrors();
+            $firstError = array_values($errors)[0]; 
+            return redirect()->back()->withInput()->with('error', $firstError);
         }
 
-        // 2. Cek Username Kembar
-        if ($userModel->where('username', $username)->first()) {
-            return redirect()->back()->with('error', 'Username sudah dipakai!');
+        // 3. SIAPKAN DATA
+        $data = [
+            'username'     => $this->request->getVar('username'),
+            'password'     => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'role'         => $this->request->getVar('role'),
+            'nama_lengkap' => $this->request->getVar('username'),
+            'foto'         => 'default.png'
+        ];
+
+        // 4. SIMPAN
+        if ($userModel->insert($data)) {
+            return redirect()->to('/login')->with('success', 'Akun berhasil dibuat! Silakan Login.');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan ke database.');
         }
-
-        // 3. Mulai Transaksi Database (Biar aman)
-        $db = \Config\Database::connect();
-        $db->transStart();
-
-        // A. Simpan ke Tabel USERS (Akun Login)
-        $userModel->save([
-            'username' => $username,
-            'password' => password_hash($pass, PASSWORD_DEFAULT),
-            'role'     => $role
-        ]);
-
-        // B. Simpan ke Tabel EMPLOYEES (Data Diri)
-        // Kita sesuaikan 'posisi' di employee dengan 'role' yang dipilih
-        $posisi = 'Staff';
-        if($role == 'kasir') $posisi = 'Kasir';
-        if($role == 'sales') $posisi = 'Sales';
-        if($role == 'staff_gudang') $posisi = 'Staff Gudang';
-
-        $employeeModel->save([
-            'nama_lengkap' => $nama,
-            'posisi'       => $posisi,
-            'no_hp'        => $hp,
-            'gaji_pokok'   => 0, // Default 0, nanti diedit admin
-            'tunjangan'    => 0
-        ]);
-
-        $db->transComplete();
-
-        if ($db->transStatus() === FALSE) {
-            return redirect()->back()->with('error', 'Gagal mendaftar, terjadi kesalahan sistem.');
-        }
-
-        return redirect()->to('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
     }
 
     public function fix_password()

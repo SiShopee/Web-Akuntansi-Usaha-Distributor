@@ -2,10 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\SaleModel;
-use App\Models\SaleItemModel;
-use App\Models\PayrollModel;
-use App\Models\EmployeeModel;
+use App\Controllers\BaseController;
 
 class Dashboard extends BaseController
 {
@@ -16,37 +13,55 @@ class Dashboard extends BaseController
             return redirect()->to('/login');
         }
 
-        // 2. Panggil Model
-        $saleModel = new SaleModel();       // <--- Namanya $saleModel
-        $employeeModel = new EmployeeModel();
-        $payrollModel = new PayrollModel();
-        $productModel = new \App\Models\ProductModel(); 
+        // Panggil Koneksi Database Langsung
+        $db = \Config\Database::connect();
 
-        // 3. Siapkan Data
+        // Cek nama kolom quantity (jaga-jaga qty atau quantity)
+        if ($db->fieldExists('quantity', 'sale_items')) {
+            $kolomQty = 'quantity';
+        } else {
+            $kolomQty = 'qty';
+        }
+
+        // --- A. HITUNG OMZET (Metode Baru: Scan Rincian Barang) ---
+        // Kita hitung manual: Jumlah Barang x Harga Jual (dari tabel produk)
+        // Ini melewati tabel 'sales' yang bermasalah tadi.
+        $queryOmzet = $db->query("
+            SELECT SUM(products.harga_jual * sale_items.$kolomQty) as total_omzet 
+            FROM sale_items 
+            JOIN products ON sale_items.product_id = products.id
+        ");
+        $omzet = $queryOmzet->getRow()->total_omzet ?? 0;
+
+        // --- B. HITUNG MODAL (HPP) ---
+        // Rumus: Jumlah Barang x Harga Beli
+        $queryModal = $db->query("
+            SELECT SUM(products.harga_beli * sale_items.$kolomQty) as total_modal 
+            FROM sale_items 
+            JOIN products ON sale_items.product_id = products.id
+        ");
+        $modal = $queryModal->getRow()->total_modal ?? 0;
+
+        // --- C. HITUNG GAJI (History Payroll) ---
+        $queryGaji = $db->query("SELECT SUM(total_gaji_bersih) as total FROM payroll");
+        $gaji = $queryGaji->getRow()->total ?? 0;
+
+        // --- D. LABA BERSIH FINAL ---
+        $laba_bersih = $omzet - $modal - $gaji;
+
+        // --- E. DATA PENDUKUNG ---
+        $total_karyawan = $db->table('employees')->countAllResults();
+        $total_produk   = $db->table('products')->countAllResults();
+
+        // Kirim Data
         $data = [
             'title' => 'Dashboard Utama',
             'user_role' => session()->get('role'),
             
-            // Data untuk Admin/Kasir
-            // PERBAIKAN: Gunakan $saleModel, bukan $transaksiModel
-            'total_penjualan' => $saleModel->selectSum('total_harga')->first()['total_harga'] ?? 0,
-            
-            // Data untuk Admin/HR
-            'total_karyawan'  => $employeeModel->countAllResults(),
-            
-            // Data untuk Staff Gudang (Hitung jumlah barang)
-            'total_produk'    => $productModel->countAllResults(), 
-            
-            // Hitung Laba Bersih
-            // Rumus: (Total Omzet - Total Modal Barang Terjual) - Total Gaji Karyawan
-            'laba_bersih'     => ($saleModel->selectSum('total_harga')->first()['total_harga'] ?? 0)
-                                 - 
-                                 ($saleModel->join('sale_items', 'sales.id = sale_items.sale_id')
-                                            ->join('products', 'sale_items.product_id = products.id')
-                                            ->selectSum('products.harga_beli', 'total_modal') // Kita ambil harga beli asli dari tabel produk
-                                            ->first()['total_modal'] ?? 0)
-                                 - 
-                                 ($employeeModel->selectSum('gaji_pokok')->first()['gaji_pokok'] ?? 0)
+            'total_penjualan' => $omzet,
+            'laba_bersih'     => $laba_bersih,
+            'total_karyawan'  => $total_karyawan,
+            'total_produk'    => $total_produk, 
         ];
 
         return view('overview', $data);

@@ -38,10 +38,11 @@
                         <td>Rp <?= number_format($k['gaji_pokok'], 0, ',', '.') ?></td>
                         <td>Rp <?= number_format($k['tunjangan'], 0, ',', '.') ?></td>
                         <td>
-                            <a href="<?= base_url('karyawan/delete/'.$k['id']) ?>" 
-                               class="btn btn-danger btn-sm"
-                               onclick="return confirm('Pecat karyawan ini?')">
-                               <i class="fa-solid fa-trash"></i>
+                            <a href="<?= base_url('karyawan/edit/' . $k['id']) ?>" class="btn btn-warning btn-sm" title="Edit Data">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>                            
+                            <a href="<?= base_url('karyawan/delete/' . $k['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus karyawan ini?')" title="Hapus">
+                                <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
                     </tr>
