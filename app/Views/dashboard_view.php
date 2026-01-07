@@ -25,60 +25,76 @@
             <small class="text-muted">Halo, <?= session()->get('username'); ?></small>
         </div>
 
-        <ul class="nav flex-column components">
+        <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="<?= base_url('dashboard') ?>" class="nav-link active">
-                    <i class="fa-solid fa-house"></i> Dashboard
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center px-3">
+                    <div class="info">
+                        <a href="#" class="d-block text-white">Halo, <?= session()->get('username') ?></a>
+                        <small class="text-muted text-uppercase"><?= str_replace('_', ' ', session()->get('role')) ?></small>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a href="<?= base_url('dashboard') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-gauge me-2"></i> Dashboard
                 </a>
             </li>
 
-            <li class="nav-header text-uppercase text-secondary mt-3" style="font-size:12px; font-weight:bold;">Penjualan</li>
+            <?php if(session()->get('role') == 'pemilik' || session()->get('role') == 'staff_gudang'): ?>
+            <li class="nav-item mt-3 text-muted text-uppercase small px-3">LOGISTIK</li>
             <li class="nav-item">
-                <a href="<?= base_url('produk') ?>" class="nav-link">
-                    <i class="fa-solid fa-box"></i> Data Barang
+                <a href="<?= base_url('produk') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-box me-2"></i> Data Barang
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= base_url('riwayat') ?>" class="nav-link">
-                    <i class="fa-solid fa-clock-rotate-left"></i> Riwayat Stok
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="<?= base_url('transaksi') ?>" class="nav-link">
-                    <i class="fa-solid fa-cart-shopping"></i> Kasir / Transaksi
-                </a>
-            </li>
-
-            <li class="nav-header text-uppercase text-secondary mt-3" style="font-size:12px; font-weight:bold;">HR & Karyawan</li>
-            <li class="nav-item">
-                <a href="<?= base_url('karyawan') ?>" class="nav-link">
-                    <i class="fa-solid fa-users"></i> Data Karyawan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="<?= base_url('absensi') ?>" class="nav-link">
-                    <i class="fa-solid fa-clock"></i> Absensi
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="<?= base_url('gaji') ?>" class="nav-link">
-                    <i class="fa-solid fa-money-bill-wave"></i> Penggajian
-                </a>
-            </li>
-
-            <?php if(session()->get('role') == 'pemilik'): ?>
-            <li class="nav-header text-uppercase text-secondary mt-3" style="font-size:12px; font-weight:bold;">Laporan</li>
-            <li class="nav-item">
-                <a href="<?= base_url('laporan') ?>" class="nav-link">
-                    <i class="fa-solid fa-chart-line"></i> Laporan Keuangan
+                <a href="<?= base_url('riwayat') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-clock-rotate-left me-2"></i> Riwayat Stok
                 </a>
             </li>
             <?php endif; ?>
-            
-            <hr>
+
+            <?php if(session()->get('role') == 'pemilik' || session()->get('role') == 'kasir'): ?>
+            <li class="nav-item mt-3 text-muted text-uppercase small px-3">PENJUALAN</li>
             <li class="nav-item">
+                <a href="<?= base_url('transaksi') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-cart-shopping me-2"></i> Kasir / Transaksi
+                </a>
+            </li>
+            <?php endif; ?>
+
+            <?php if(session()->get('role') == 'pemilik'): ?>
+            <li class="nav-item mt-3 text-muted text-uppercase small px-3">HR & KARYAWAN</li>
+            <li class="nav-item">
+                <a href="<?= base_url('karyawan') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-users me-2"></i> Data Karyawan
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= base_url('absensi') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-clock me-2"></i> Absensi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= base_url('gaji') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-money-bill-wave me-2"></i> Penggajian
+                </a>
+            </li>
+            <?php endif; ?>
+
+            <?php if(session()->get('role') == 'pemilik' || session()->get('role') == 'sales'): ?>
+            <li class="nav-item mt-3 text-muted text-uppercase small px-3">LAPORAN</li>
+            <li class="nav-item">
+                <a href="<?= base_url('laporan') ?>" class="nav-link text-white">
+                    <i class="fa-solid fa-chart-line me-2"></i> Laporan Keuangan
+                </a>
+            </li>
+            <?php endif; ?>
+
+            <li class="nav-item mt-4">
                 <a href="<?= base_url('logout') ?>" class="nav-link text-danger">
-                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
                 </a>
             </li>
         </ul>
