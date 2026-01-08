@@ -1857,3 +1857,556 @@ WARNING - 2026-01-08 16:39:21 --> [DEPRECATED] number_format(): Passing null to 
  9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-01-08 18:15:18 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "index,php"
+[Method: GET, Route: public/index,php]
+in SYSTEMPATH/Router/Router.php on line 741.
+ 1 SYSTEMPATH/Router/Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars()
+ 2 SYSTEMPATH/CodeIgniter.php(832): CodeIgniter\Router\Router->handle()
+ 3 SYSTEMPATH/CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-01-08 18:57:00 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'siuser'@'localhost' (using password: NO) in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 /var/www/si-akuntan/app/Controllers/Auth.php(23): CodeIgniter\BaseModel->first()
+#7 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_login()
+#8 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: NO) in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 /var/www/si-akuntan/app/Controllers/Auth.php(23): CodeIgniter\BaseModel->first()
+#6 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_login()
+#7 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#8 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#9 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#11 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#12 {main}
+CRITICAL - 2026-01-08 18:57:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+[Method: POST, Route: login/auth]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(715): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Controllers/Auth.php(23): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_login()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-01-08 18:57:21 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'siuser'@'localhost' (using password: NO) in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#7 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#8 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#9 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#12 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#13 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#14 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#15 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: NO) in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#5 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#8 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#13 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2026-01-08 18:57:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+[Method: POST, Route: register/store]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+ 6 SYSTEMPATH/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+ 7 SYSTEMPATH/Controller.php(136): CodeIgniter\Validation\Validation->run()
+ 8 APPPATH/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-01-08 19:13:53 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#7 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#8 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#9 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#12 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#13 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#14 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#15 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#5 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#8 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#13 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2026-01-08 19:13:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: register/store]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+ 6 SYSTEMPATH/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+ 7 SYSTEMPATH/Controller.php(136): CodeIgniter\Validation\Validation->run()
+ 8 APPPATH/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-01-08 19:15:24 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#7 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#8 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#9 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#12 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#13 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#14 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#15 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#5 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#8 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#13 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2026-01-08 19:15:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: register/store]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+ 6 SYSTEMPATH/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+ 7 SYSTEMPATH/Controller.php(136): CodeIgniter\Validation\Validation->run()
+ 8 APPPATH/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-01-08 19:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-01-08 19:16:31 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#7 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#8 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#9 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#12 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#13 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#14 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#15 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#5 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#8 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#13 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2026-01-08 19:16:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: register/store]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+ 6 SYSTEMPATH/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+ 7 SYSTEMPATH/Controller.php(136): CodeIgniter\Validation\Validation->run()
+ 8 APPPATH/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-01-08 19:17:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-01-08 19:17:47 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:202
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/MySQLi/Connection.php(202): mysqli->real_connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#7 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#8 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#9 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#12 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#13 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#14 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#15 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /var/www/si-akuntan/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/si-akuntan/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/si-akuntan/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/si-akuntan/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/si-akuntan/system/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/si-akuntan/system/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+#5 /var/www/si-akuntan/system/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+#6 /var/www/si-akuntan/system/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+#7 /var/www/si-akuntan/system/Controller.php(136): CodeIgniter\Validation\Validation->run()
+#8 /var/www/si-akuntan/app/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+#9 /var/www/si-akuntan/system/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+#10 /var/www/si-akuntan/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/si-akuntan/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/si-akuntan/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#13 /var/www/si-akuntan/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/si-akuntan/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2026-01-08 19:17:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: register/store]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/Rules.php(175): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/StrictRules/Rules.php(187): CodeIgniter\Validation\Rules->is_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(336): CodeIgniter\Validation\StrictRules\Rules->is_unique()
+ 6 SYSTEMPATH/Validation/Validation.php(201): CodeIgniter\Validation\Validation->processRules()
+ 7 SYSTEMPATH/Controller.php(136): CodeIgniter\Validation\Validation->run()
+ 8 APPPATH/Controllers/Auth.php(79): CodeIgniter\Controller->validate()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Auth->process_register()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-01-08 19:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:22:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-08 19:23:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:23:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:23:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:23:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:23:46 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-08 19:25:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:25:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:26:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:26:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-08 19:26:15 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:26:15 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:26:15 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:26:15 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:26:15 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-01-08 19:27:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-01-08 19:27:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-01-08 19:27:18 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:27:18 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:27:18 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:27:18 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-01-08 19:27:18 --> [DEPRECATED] number_format(): Passing null to parameter #1 ($num) of type float is deprecated in APPPATH/Views/overview.php on line 168.
+ 1 APPPATH/Views/overview.php(168): number_format(null, 0, ',', '.')
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/si-akuntan/app/Views/overview.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render('overview', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(105): view('overview', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Dashboard::index');
 
 // Rute untuk pengecekan database
 $routes->get('CekDatabase', 'CekDatabase::index');
