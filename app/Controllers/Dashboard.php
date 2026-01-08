@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 
 class Dashboard extends BaseController
 {
-public function index()
+    public function index()
     {
         // 1. Cek Login
         if (!session()->get('isLoggedIn')) {
@@ -75,6 +75,15 @@ public function index()
             LIMIT 5
         ")->getResultArray();
 
+        // --- D. DATA PESAN MASUK (INBOX) ---
+        // Ambil pesan yang ditujukan untuk Role yang sedang login
+        $roleSaya = session()->get('role');
+        
+        $pesanMasuk = $db->table('messages')
+                         ->where('target_role', $roleSaya)
+                         ->orderBy('created_at', 'DESC')
+                         ->get()->getResultArray();
+
         $data = [
             'title' => 'Dashboard Utama',
             'user_role' => session()->get('role'),
@@ -85,10 +94,12 @@ public function index()
             'total_karyawan'  => $total_karyawan,
             
             // Data Grafik & Tabel
-            // Kita ubah key-nya biar sesuai dengan view
-            'chart_data'      => array_reverse($chartData), 
+            'chart_data'      => array_reverse($chartData),
             'stok_menipis'    => $stokMenipis,
-            'transaksi_baru'  => $transaksiTerbaru
+            'transaksi_baru'  => $transaksiTerbaru,
+            
+            // DATA BARU: Inbox Pesan
+            'pesan_masuk'     => $pesanMasuk
         ];
 
         return view('overview', $data);

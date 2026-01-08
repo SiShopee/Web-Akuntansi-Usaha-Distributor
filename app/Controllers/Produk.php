@@ -18,15 +18,26 @@ class Produk extends BaseController
 
     public function index()
     {
-        // 1. Ambil semua data barang dari database
-        $data_barang = $this->productModel->findAll();
+        // 1. Cek Login (Sudah ada)
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
 
+        // --- 2. CEK JABATAN (SECURITY BARU) ---
+        // Jika jabatannya Kasir ATAU Sales, tendang balik ke Dashboard!
+        $role = session()->get('role');
+        if ($role == 'kasir' || $role == 'sales') {
+            return redirect()->to('/dashboard')->with('error', 'Akses Ditolak! Anda bukan Staff Gudang.');
+        }
+
+        // ... (Kode query produk ke bawah biarkan seperti biasa) ...
+        $productModel = new \App\Models\ProductModel();
         $data = [
             'title' => 'Data Barang',
-            'products' => $data_barang
+            'products' => $productModel->findAll()
         ];
 
-        return view('produk/index', $data);
+        return view('produk_view', $data);
     }
 
     public function create()

@@ -65,3 +65,6 @@ $routes->get('riwayat', 'Riwayat::index');
 
 $routes->get('profil', 'Profil::index');
 $routes->post('profil/update', 'Profil::update');
+
+// --- Rute Pesan ---
+$routes->post('pesan/kirim', 'Pesan::kirim');

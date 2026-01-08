@@ -2,11 +2,49 @@
 
 <?= $this->section('content') ?>
 
+<style>
+    /* CSS INI HANYA AKTIF SAAT MAU NGE-PRINT */
+    @media print {
+        /* Sembunyikan Sidebar, Tombol, dan Link navigasi */
+        #sidebar, .btn, .no-print, header, footer {
+            display: none !important;
+        }
+
+        /* Lebarkan konten utama agar memenuhi kertas */
+        #content-wrapper {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        /* Pastikan background warna  tercetak */
+        body {
+            -webkit-print-color-adjust: exact;
+        }
+        
+        /* Ganti Judul Halaman di Kertas */
+        .h3 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* Hilangkan shadow agar lebih bersih di kertas */
+        .card {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+        }
+    }
+</style>
+
 <div class="container-fluid">
     
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 class="h3 mb-0 text-gray-800 fw-bold">Dashboard Overview</h3>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        
+        <button onclick="window.print()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm no-print">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report (Cetak)
+        </button>
     </div>
 
     <div class="row mb-4">
@@ -92,9 +130,19 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center bg-white">
-                    <a href="<?= base_url('produk') ?>" class="small text-danger text-decoration-none">Kelola Barang &rarr;</a>
+                    
+                    <?php if(session()->get('role') != 'kasir' && session()->get('role') != 'sales'): ?>
+                        <a href="<?= base_url('produk') ?>" class="small text-danger text-decoration-none">
+                            Kelola Barang &rarr;
+                        </a>
+                    
+                    <?php else: ?>
+                        <button type="button" class="btn btn-sm btn-warning text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#modalPesan">
+                            <i class="fa-solid fa-paper-plane me-1"></i> Kirim Pesan ke Gudang
+                        </button>
+                    <?php endif; ?>
+
                 </div>
-            </div>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 bg-white border-bottom-0">
@@ -190,5 +238,39 @@
         }
     });
 </script>
+
+<div class="modal fade" id="modalPesan" tabindex="-1" aria-labelledby="modalPesanLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title text-dark fw-bold" id="modalPesanLabel">
+                    <i class="fa-solid fa-comments me-2"></i>Hubungi Staff Gudang
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <form action="<?= base_url('pesan/kirim') ?>" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="tujuan" value="staff_gudang">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Pesan / Request Stok:</label>
+                        <textarea name="isi_pesan" class="form-control" rows="4" placeholder="Contoh: Stok Mouse tinggal 4, tolong restock segera ya!" required></textarea>
+                    </div>
+                    
+                    <div class="alert alert-info small py-2">
+                        <i class="fa-solid fa-circle-info me-1"></i> Pesan ini akan masuk ke notifikasi Staff Gudang.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        Kirim Sekarang <i class="fa-solid fa-paper-plane ms-1"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?= $this->endSection() ?>
