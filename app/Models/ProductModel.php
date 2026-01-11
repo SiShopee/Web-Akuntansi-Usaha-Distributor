@@ -12,9 +12,14 @@ class ProductModel extends Model
     protected $returnType       = 'array';
     
     // Sesuai kolom di database yang kita buat tadi
-    protected $allowedFields    = ['nama_barang', 'kode_barang', 'harga_beli', 'harga_jual', 'stok'];
+    protected $allowedFields    = ['nama_barang', 'kode_barang', 'harga_beli', 'harga_jual', 'stok', 'deleted_at'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
-    protected $updatedField  = ''; 
+    protected $updatedField  = '';
+
+    // Aktifkan soft deletes untuk menjaga integritas laporan keuangan
+    protected $useSoftDeletes = true;
+    protected $deletedField  = 'deleted_at';
+    protected $dateFormat     = 'datetime';
 }

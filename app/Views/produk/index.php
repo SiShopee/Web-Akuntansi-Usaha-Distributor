@@ -55,6 +55,11 @@
                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $p['id'] ?>" title="Edit Info Barang">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
+
+                            <button type="button" class="btn btn-danger btn-sm" title="Hapus Barang"
+                                onclick="if(confirm('Yakin ingin menghapus barang ini? Data historis seperti transaksi dan riwayat stok tidak akan dihapus.')) { window.location='<?= base_url('produk/delete/' . $p['id']) ?>'; }">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                     <?php endforeach; ?>

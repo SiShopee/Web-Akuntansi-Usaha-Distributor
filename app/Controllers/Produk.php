@@ -74,8 +74,15 @@ class Produk extends BaseController
 
     public function delete($id)
     {
+        // Pastikan data ada
+        $product = $this->productModel->find($id);
+        if (!$product) {
+            return redirect()->to('/produk')->with('error', 'Data barang tidak ditemukan.');
+        }
+
+        // Lakukan soft-delete (karena ProductModel sudah pakai $useSoftDeletes)
         $this->productModel->delete($id);
-        return redirect()->to('/produk');
+        return redirect()->to('/produk')->with('success', 'Barang berhasil dinonaktifkan (soft-delete).');
     }
 
     public function restock($id)
