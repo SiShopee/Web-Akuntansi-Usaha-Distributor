@@ -8,6 +8,17 @@ class SaleModel extends Model
 {
     protected $table            = 'sales';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $allowedFields    = ['no_faktur', 'tanggal', 'grand_total', 'user_id'];
+    protected $useTimestamps    = false; // Sesuaikan dengan settinganmu
+    
+    // INI YANG HARUS DIUPDATE:
+    protected $allowedFields    = [
+        'no_faktur', 
+        'tanggal', 
+        'user_id', 
+        'grand_total',
+        
+        // Tambahkan 2 anak baru ini agar bisa masuk database:
+        'total_harga', 
+        'pajak'
+    ];
 }

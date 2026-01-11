@@ -3,53 +3,69 @@
 <?= $this->section('content') ?>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>Riwayat Kehadiran</h3>
-        <a href="<?= base_url('absensi/create') ?>" class="btn btn-primary">
-            <i class="fa-solid fa-calendar-check"></i> Input Absensi
-        </a>
-    </div>
+    <h1 class="h3 mb-4 text-gray-800 fw-bold">
+        <i class="fa-solid fa-clipboard-user me-2"></i>Data Absensi Karyawan
+    </h1>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
-    <?php endif; ?>
-
-    <div class="card shadow">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Riwayat Kehadiran</h6>
+        </div>
         <div class="card-body">
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Nama Karyawan</th>
-                        <th>Posisi</th>
-                        <th>Status</th>
-                        <th>Jam Masuk</th>
-                        <th>Jam Keluar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($attendance as $a): ?>
-                    <tr>
-                        <td><?= date('d M Y', strtotime($a['tanggal'])) ?></td>
-                        <td class="fw-bold"><?= $a['nama_lengkap'] ?></td>
-                        <td><?= $a['posisi'] ?></td>
-                        <td>
-                            <?php 
-                                $badge = 'secondary';
-                                if($a['status'] == 'hadir') $badge = 'success';
-                                if($a['status'] == 'sakit') $badge = 'warning';
-                                if($a['status'] == 'alpa') $badge = 'danger';
-                            ?>
-                            <span class="badge bg-<?= $badge ?>"><?= strtoupper($a['status']) ?></span>
-                        </td>
-                        <td><?= $a['jam_masuk'] ?></td>
-                        <td><?= $a['jam_keluar'] ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama Karyawan</th>
+                            <th>Jam Masuk</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(empty($attendance)): ?>
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">Belum ada data absensi.</td>
+                            </tr>
+                        <?php else: ?>
+                            <?php foreach($attendance as $a): ?>
+                            <tr>
+                                <td>
+                                    <?= date('d M Y', strtotime($a['tanggal'])) ?>
+                                </td>
+
+                                <td class="fw-bold text-dark">
+                                    <?= esc($a['nama_karyawan']) ?>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-light text-dark border">
+                                        <i class="fa-regular fa-clock me-1"></i> <?= $a['jam_masuk'] ?>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <?php 
+                                        $badge = 'secondary';
+                                        $status = strtolower($a['status']); // Ubah ke huruf kecil biar aman
+                                        if($status == 'hadir') $badge = 'success';
+                                        if($status == 'sakit') $badge = 'warning';
+                                        if($status == 'izin')  $badge = 'info';
+                                        if($status == 'alpa')  $badge = 'danger';
+                                    ?>
+                                    <span class="badge bg-<?= $badge ?>">
+                                        <?= strtoupper($a['status']) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
 <?= $this->endSection() ?>

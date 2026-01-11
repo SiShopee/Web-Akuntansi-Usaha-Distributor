@@ -61,77 +61,86 @@ class Transaksi extends BaseController
         session()->remove('cart');
         return redirect()->to('/transaksi');
     }
-
+    
     public function process_payment()
     {
         $cart = session()->get('cart');
 
-        // 1. Cek apakah keranjang kosong?
         if (empty($cart)) {
             return redirect()->to('/transaksi')->with('error', 'Keranjang belanja kosong!');
         }
 
-        // 2. Hitung Grand Total
-        $grand_total = 0;
+        // 1. Hitung Subtotal & PPN
+        $subtotal = 0;
         foreach ($cart as $item) {
-            $grand_total += ($item['price'] * $item['qty']);
+            $subtotal += ($item['price'] * $item['qty']);
         }
 
-        // 3. Siapkan Model
-        $saleModel = new SaleModel();
-        $saleItemModel = new SaleItemModel();
-        $productModel = new ProductModel();
+        $tarif_ppn = 0.11;
+        $pajak     = $subtotal * $tarif_ppn; 
+        $grand_total = $subtotal + $pajak;
 
-        // 4. Mulai Database Transaction (Supaya aman, kalau gagal 1 batal semua)
+        // 2. Siapkan Model
+        $saleModel = new \App\Models\SaleModel();
+        $saleItemModel = new \App\Models\SaleItemModel();
+        $productModel = new \App\Models\ProductModel();
+        $stockHistoryModel = new \App\Models\StockHistoryModel(); 
+
         $db = \Config\Database::connect();
         $db->transStart();
 
-        // A. SIMPAN DATA KE TABEL SALES (Header)
+        // 3. Simpan ke Database Penjualan
         $saleData = [
-            'no_faktur'   => 'INV-' . date('YmdHis'), // Contoh: INV-202601070300
+            'no_faktur'   => 'INV-' . date('YmdHis'),
             'tanggal'     => date('Y-m-d H:i:s'),
-            'grand_total' => $grand_total,
-            'user_id'     => session()->get('id') // ID kasir yang sedang login
+            'total_harga' => $subtotal,    
+            'pajak'       => $pajak,       
+            'grand_total' => $grand_total, 
+            'user_id'     => session()->get('id')
         ];
+
         $saleModel->insert($saleData);
-        $sale_id = $saleModel->getInsertID(); // Ambil ID transaksi yang baru dibuat
+        $sale_id = $saleModel->getInsertID();
 
-        $stockHistoryModel = new StockHistoryModel(); // Load Model Baru
-
-        // B. SIMPAN RINCIAN BARANG & KURANGI STOK
+        // 4. Simpan Item & Kurangi Stok & CATAT RIWAYAT
         foreach ($cart as $item) {
-            // 1. Simpan ke sale_items (Kode Lama)
+            // A. Simpan Detail Item
             $saleItemModel->insert([
-                'sale_id'       => $sale_id,
-                'product_id'    => $item['id'],
-                'qty'           => $item['qty'],
-                'harga_saat_ini'=> $item['price'],
-                'subtotal'      => $item['price'] * $item['qty']
+                'sale_id'        => $sale_id,
+                'product_id'     => $item['id'],
+                'qty'            => $item['qty'],
+                'harga_saat_ini' => $item['price'],
+                'subtotal'       => $item['price'] * $item['qty']
             ]);
 
-            // 2. Kurangi Stok di tabel products (Kode Lama)
+            // B. Update Stok di Tabel Produk
             $currentProduct = $productModel->find($item['id']);
-            $newStock = $currentProduct['stok'] - $item['qty'];
-            $productModel->update($item['id'], ['stok' => $newStock]);
+            if($currentProduct) {
+                $newStock = $currentProduct['stok'] - $item['qty'];
+                $productModel->update($item['id'], ['stok' => $newStock]);
+            }
 
-            // 3. [BARU] Catat Riwayat Barang Keluar
+            // C. CATAT RIWAYAT STOK (INI YANG TADINYA MATI)
             $stockHistoryModel->save([
                 'product_id' => $item['id'],
-                'type'       => 'keluar',
+                
+                // PENTING: Kita paksa labelnya 'keluar' agar warnanya MERAH
+                'type'       => 'keluar', 
+                
                 'qty'        => $item['qty'],
-                'keterangan' => 'Penjualan No: ' . $saleData['no_faktur']
+                'keterangan' => 'Penjualan No: ' . $saleData['no_faktur'], 
+                'created_at' => date('Y-m-d H:i:s')
             ]);
         }
 
-        $db->transComplete(); // Selesai transaksi
+        $db->transComplete();
 
         if ($db->transStatus() === FALSE) {
-            // Jika gagal
-            return redirect()->to('/transaksi')->with('error', 'Transaksi Gagal Disimpan!');
+            return redirect()->to('/transaksi')->with('error', 'Transaksi Gagal!');
         } else {
-            // Jika sukses: Hapus keranjang & Tampilkan pesan sukses
             session()->remove('cart');
-            return redirect()->to('/transaksi')->with('success', 'Transaksi Berhasil! Stok sudah dikurangi.');
+            return redirect()->to('/transaksi')->with('success', 'Transaksi Berhasil! Stok tercatat keluar.');
         }
     }
+
 }

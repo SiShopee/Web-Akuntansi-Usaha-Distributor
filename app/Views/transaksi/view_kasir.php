@@ -90,6 +90,34 @@
                             <td class="fw-bold text-end fs-5">Rp <?= number_format($grand_total) ?></td>
                         </tr>
                     </tbody>
+		    <tfoot>
+                        <?php 
+                            // Hitung ulang PPN untuk Tampilan
+                            $subtotal_view = 0;
+                            if (!empty($cart)) {
+                                foreach($cart as $item) {
+                                    $subtotal_view += $item['price'] * $item['qty'];
+                                }
+                            }
+                            $ppn_view   = $subtotal_view * 0.11; // 11%
+                            $total_view = $subtotal_view + $ppn_view;
+                        ?>
+
+                        <tr>
+                            <td colspan="3" class="text-end small text-muted">Subtotal (DPP)</td>
+                            <td class="text-end small fw-bold">Rp <?= number_format($subtotal_view, 0, ',', '.') ?></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3" class="text-end small text-muted">PPN (11%)</td>
+                            <td class="text-end small text-danger">+ Rp <?= number_format($ppn_view, 0, ',', '.') ?></td>
+                        </tr>
+
+                        <tr class="table-warning border-top border-warning">
+                            <td colspan="3" class="fw-bold text-end">TOTAL YANG HARUS DIBAYAR</td>
+                            <td class="fw-bold text-end fs-5 text-dark">Rp <?= number_format($total_view, 0, ',', '.') ?></td>
+                        </tr>
+                    </tfoot>
                 </table>
 
                 <form action="<?= base_url('transaksi/process_payment') ?>" method="post">

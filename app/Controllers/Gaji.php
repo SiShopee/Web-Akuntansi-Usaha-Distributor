@@ -31,36 +31,39 @@ class Gaji extends BaseController
     public function process()
     {
         $employeeModel   = new EmployeeModel();
-        $attendanceModel = new AttendanceModel();
-        $payrollModel    = new PayrollModel();
+        $payrollModel    = new PayrollModel(); // AttendanceModel tidak perlu diload jika pakai manual query
 
         $employee_id = $this->request->getPost('employee_id');
         $bulan       = $this->request->getPost('bulan'); // Format: 2026-01
-        
-        // 1. Ambil Data Karyawan (Untuk tahu Gaji Pokok)
+
+        // 1. Ambil Data Karyawan (Untuk tahu Gaji Pokok & NAMANYA)
         $karyawan = $employeeModel->find($employee_id);
         
-        // 2. Hitung Absensi di Bulan tersebut
-        // Kita cari berapa kali dia "Alpa" di bulan yang dipilih
-        $db = \Config\Database::connect();
-        $query = $db->query("SELECT COUNT(*) as jumlah_alpa FROM attendance 
-                             WHERE employee_id = $employee_id 
-                             AND status = 'alpa' 
-                             AND DATE_FORMAT(tanggal, '%Y-%m') = '$bulan'");
-        $result = $query->getRow();
-        $jumlah_alpa = $result->jumlah_alpa;
+        // Ambil nama untuk dicocokkan ke tabel absensi
+        $nama_target = $karyawan['nama_lengkap']; 
 
-        // Hitung Total Hadir (Opsional, buat info saja)
+        // 2. Hitung Absensi (Mencocokkan Nama, BUKAN ID)
+        $db = \Config\Database::connect();
+        
+        // A. Hitung ALPA
+        // Perhatikan: Kita ganti 'employee_id' menjadi 'nama_karyawan'
+        $queryAlpa = $db->query("SELECT COUNT(*) as jumlah_alpa FROM attendance 
+                             WHERE nama_karyawan = '$nama_target' 
+                             AND status = 'alpa'
+                             AND DATE_FORMAT(tanggal, '%Y-%m') = '$bulan'");
+        $jumlah_alpa = $queryAlpa->getRow()->jumlah_alpa;
+
+        // B. Hitung HADIR (Opsional)
         $queryHadir = $db->query("SELECT COUNT(*) as jumlah_hadir FROM attendance 
-                             WHERE employee_id = $employee_id 
-                             AND status = 'hadir' 
+                             WHERE nama_karyawan = '$nama_target'
+                             AND status = 'hadir'
                              AND DATE_FORMAT(tanggal, '%Y-%m') = '$bulan'");
         $total_hadir = $queryHadir->getRow()->jumlah_hadir;
 
         // 3. RUMUS GAJI
-        $denda_per_alpa = 100000; // Misal denda 100rb per alpa
+        $denda_per_alpa = 100000; 
         $total_potongan = $jumlah_alpa * $denda_per_alpa;
-        
+
         $gaji_kotor  = $karyawan['gaji_pokok'] + $karyawan['tunjangan'];
         $gaji_bersih = $gaji_kotor - $total_potongan;
 
@@ -73,6 +76,6 @@ class Gaji extends BaseController
             'total_gaji_bersih' => $gaji_bersih
         ]);
 
-        return redirect()->to('/gaji')->with('success', "Gaji berhasil dihitung! Potongan Alpa: Rp " . number_format($total_potongan));
+        return redirect()->to('/gaji')->with('success', "Gaji berhasil dihitung! Total Alpa: $jumlah_alpa kali. Potongan: Rp " . number_format($total_potongan));
     }
 }

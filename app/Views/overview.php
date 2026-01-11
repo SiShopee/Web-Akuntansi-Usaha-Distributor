@@ -3,50 +3,54 @@
 <?= $this->section('content') ?>
 
 <style>
-    /* CSS INI HANYA AKTIF SAAT MAU NGE-PRINT */
+    /* CSS PRINTING */
     @media print {
-        /* Sembunyikan Sidebar, Tombol, dan Link navigasi */
-        #sidebar, .btn, .no-print, header, footer {
-            display: none !important;
-        }
-
-        /* Lebarkan konten utama agar memenuhi kertas */
-        #content-wrapper {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-        }
-
-        /* Pastikan background warna  tercetak */
-        body {
-            -webkit-print-color-adjust: exact;
-        }
-        
-        /* Ganti Judul Halaman di Kertas */
-        .h3 {
-            font-size: 24pt;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        /* Hilangkan shadow agar lebih bersih di kertas */
-        .card {
-            box-shadow: none !important;
-            border: 1px solid #ddd !important;
-        }
+        #sidebar, .btn, .no-print, header, footer { display: none !important; }
+        #content-wrapper { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+        body { -webkit-print-color-adjust: exact; }
+        .card { box-shadow: none !important; border: 1px solid #ddd !important; }
     }
 </style>
 
 <div class="container-fluid">
-    
+
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 class="h3 mb-0 text-gray-800 fw-bold">Dashboard Overview</h3>
-        
         <button onclick="window.print()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm no-print">
             <i class="fas fa-download fa-sm text-white-50"></i> Generate Report (Cetak)
         </button>
     </div>
 
+    <?php if(!empty($pesan_masuk)): ?>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-left-danger shadow h-100 py-2 bg-warning bg-opacity-10" style="border-left: 5px solid #e74a3b;">
+                    <div class="card-body">
+                        <h5 class="font-weight-bold text-danger mb-3">
+                            <i class="fa-solid fa-bell fa-shake me-2"></i> Pesan Masuk (Request Baru)
+                        </h5>
+                        <?php foreach($pesan_masuk as $msg): ?>
+                            <div class="alert alert-light border shadow-sm d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <strong class="text-dark">
+                                        <i class="fa-solid fa-user-tag me-1 text-primary"></i> <?= esc($msg['sender_name']) ?>
+                                    </strong>
+                                    <span class="text-muted small ms-2">(<?= date('d M H:i', strtotime($msg['created_at'])) ?>)</span>
+                                    <div class="mt-1 text-dark">"<?= esc($msg['message']) ?>"</div>
+                                </div>
+                                <a href="<?= base_url('pesan/baca/'.$msg['id']) ?>" class="btn btn-sm btn-success shadow-sm" title="Tandai Selesai">
+                                    <i class="fa-solid fa-check me-1"></i> Oke, Siap!
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
+    <?php if(session()->get('role') == 'admin' || session()->get('role') == 'pemilik'): ?>
     <div class="row mb-4">
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-start border-4 border-primary shadow h-100 py-2">
@@ -62,7 +66,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-start border-4 border-success shadow h-100 py-2">
                 <div class="card-body">
@@ -77,7 +80,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-start border-4 border-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -93,12 +95,44 @@
             </div>
         </div>
     </div>
-
+    <?php endif; ?> 
+    <?php if(session()->get('role') != 'admin' && session()->get('role') != 'pemilik'): ?>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow h-100 border-left-info" style="border-left: 5px solid #36b9cc;">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="font-weight-bold text-gray-800">
+                                Halo, <?= session()->get('nama_lengkap') ?? session()->get('username') ?>! 👋
+                            </h4>
+                            <p class="mb-0 text-muted">Tanggal Hari Ini: <strong><?= date('d F Y') ?></strong></p>
+                        </div>
+                        <div class="col-md-4 text-end text-right">
+                            <?php if($sudah_absen): ?>
+                                <button class="btn btn-success btn-lg disabled" style="cursor: not-allowed; opacity: 1;">
+                                    <i class="fa-solid fa-check-circle me-2"></i> Sudah Absen
+                                </button>
+                                <div class="small text-success mt-2 fw-bold">Masuk jam: <?= $jam_absen ?> WIB</div>
+                            <?php else: ?>
+                                <form action="<?= base_url('dashboard/absen') ?>" method="post">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                        <i class="fa-solid fa-fingerprint me-2"></i> Klik untuk Absen Masuk
+                                    </button>
+                                </form>
+                                <div class="small text-muted mt-2">*Catat kehadiranmu sekarang.</div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
     <div class="row">
-        
         <div class="col-lg-8 mb-4">
             <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
+                <div class="card-header py-3 bg-white">
                     <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-chart-area me-2"></i>Tren Penjualan (7 Hari Terakhir)</h6>
                 </div>
                 <div class="card-body">
@@ -110,7 +144,6 @@
         </div>
 
         <div class="col-lg-4 mb-4">
-            
             <div class="card shadow mb-4">
                 <div class="card-header py-3 bg-white border-bottom-0">
                     <h6 class="m-0 font-weight-bold text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i>Stok Menipis!</h6>
@@ -130,23 +163,19 @@
                     <?php endif; ?>
                 </div>
                 <div class="card-footer text-center bg-white">
-                    
                     <?php if(session()->get('role') != 'kasir' && session()->get('role') != 'sales'): ?>
-                        <a href="<?= base_url('produk') ?>" class="small text-danger text-decoration-none">
-                            Kelola Barang &rarr;
-                        </a>
-                    
+                        <a href="<?= base_url('produk') ?>" class="small text-danger text-decoration-none">Kelola Barang &rarr;</a>
                     <?php else: ?>
                         <button type="button" class="btn btn-sm btn-warning text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#modalPesan">
                             <i class="fa-solid fa-paper-plane me-1"></i> Kirim Pesan ke Gudang
                         </button>
                     <?php endif; ?>
-
                 </div>
+            </div>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 bg-white border-bottom-0">
-                    <h6 class="m-0 font-weight-bold text-info"><i class="fa-solid fa-receipt me-2"></i>Transaksi Baru</h6>
+                    <h6 class="m-0 font-weight-bold text-info"><i class="fa-solid fa-trophy me-2"></i>Top Transaksi</h6>
                 </div>
                 <div class="card-body p-0">
                      <?php if(empty($transaksi_baru)): ?>
@@ -155,18 +184,15 @@
                         <div class="table-responsive">
                             <table class="table table-sm table-borderless mb-0">
                                 <thead class="bg-light">
-                                    <tr>
-                                        <th class="ps-3">ID</th>
-                                        <th>Total</th>
-                                        <th>Kasir</th>
-                                    </tr>
+                                    <tr><th class="ps-3">No</th><th>Total</th><th>Kasir</th></tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1; ?>
                                     <?php foreach($transaksi_baru as $trx): ?>
                                     <tr>
-                                        <td class="ps-3 text-muted small">#<?= $trx['id'] ?></td>
-                                        <td class="fw-bold text-dark">Rp <?= number_format($trx['total_harga'],0,',','.') ?></td>
-                                        <td class="small"><?= $trx['kasir'] ?? 'Admin' ?></td>
+                                        <td class="ps-3 text-muted small"><?= $i++ ?>.</td>
+                                        <td class="fw-bold text-dark">Rp <?= number_format($trx['grand_total'], 0, ',', '.') ?></td>
+                                        <td class="small"><i class="fa-solid fa-user-circle me-1 text-gray-400"></i><?= esc($trx['kasir'] ?? 'Admin') ?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -175,37 +201,26 @@
                     <?php endif; ?>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Ambil data dari PHP
     const labels = <?= json_encode(array_column($chart_data, 'tgl')); ?>;
     const dataOmzet = <?= json_encode(array_column($chart_data, 'total')); ?>;
-
     const ctx = document.getElementById('myAreaChart').getContext('2d');
     const myChart = new Chart(ctx, {
-        type: 'line', // Jenis Grafik Garis
+        type: 'line',
         data: {
-            labels: labels, // Tanggal
+            labels: labels,
             datasets: [{
                 label: 'Omzet Penjualan',
-                data: dataOmzet, // Nominal Uang
+                data: dataOmzet,
                 backgroundColor: 'rgba(78, 115, 223, 0.05)',
                 borderColor: 'rgba(78, 115, 223, 1)',
                 pointRadius: 3,
-                pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                pointBorderColor: 'rgba(78, 115, 223, 1)',
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
-                pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                tension: 0.3, // Garis melengkung halus
+                tension: 0.3,
                 fill: true
             }]
         },
@@ -213,28 +228,10 @@
             maintainAspectRatio: false,
             layout: { padding: { left: 10, right: 25, top: 25, bottom: 0 } },
             scales: {
-                x: { grid: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 7 } },
-                y: { 
-                    ticks: { maxTicksLimit: 5, padding: 10, callback: function(value) { return 'Rp ' + value.toLocaleString('id-ID'); } },
-                    grid: { color: "rgb(234, 236, 244)", zeroLineColor: "rgb(234, 236, 244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
-                },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 7 } },
+                y: { ticks: { maxTicksLimit: 5, callback: function(value) { return 'Rp ' + value.toLocaleString('id-ID'); } } },
             },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyColor: "#858796",
-                    titleColor: '#6e707e',
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    intersect: false,
-                    mode: 'index',
-                    caretPadding: 10,
-                }
-            }
+            plugins: { legend: { display: false } }
         }
     });
 </script>
@@ -248,25 +245,18 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            
             <form action="<?= base_url('pesan/kirim') ?>" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="tujuan" value="staff_gudang">
-
                     <div class="mb-3">
                         <label class="form-label fw-bold">Pesan / Request Stok:</label>
                         <textarea name="isi_pesan" class="form-control" rows="4" placeholder="Contoh: Stok Mouse tinggal 4, tolong restock segera ya!" required></textarea>
                     </div>
-                    
-                    <div class="alert alert-info small py-2">
-                        <i class="fa-solid fa-circle-info me-1"></i> Pesan ini akan masuk ke notifikasi Staff Gudang.
-                    </div>
+                    <div class="alert alert-info small py-2"><i class="fa-solid fa-circle-info me-1"></i> Pesan ini akan masuk ke notifikasi Staff Gudang.</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">
-                        Kirim Sekarang <i class="fa-solid fa-paper-plane ms-1"></i>
-                    </button>
+                    <button type="submit" class="btn btn-primary">Kirim Sekarang <i class="fa-solid fa-paper-plane ms-1"></i></button>
                 </div>
             </form>
         </div>

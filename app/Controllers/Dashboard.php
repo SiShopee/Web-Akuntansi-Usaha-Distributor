@@ -45,6 +45,16 @@ class Dashboard extends BaseController
         $laba_bersih    = $omzet - $modal - $gaji;
         $total_karyawan = $db->table('employees')->countAllResults();
 
+	// CEK STATUS ABSENSI USER 
+        $attModel = new \App\Models\AttendanceModel();
+        $today    = date('Y-m-d');
+        $userId   = session()->get('id');
+
+	
+	$sudahAbsen = $attModel->where('user_id', $userId)
+                               ->where('tanggal', $today)
+                               ->first();
+
         // --- C. DATA GRAFIK & TABEL (PERBAIKAN UTAMA DISINI) ---
 
         // 1. GRAFIK: Penjualan 7 Hari Terakhir
@@ -65,26 +75,26 @@ class Dashboard extends BaseController
                           ->limit(5)
                           ->get()->getResultArray();
 
-        // 3. TRANSAKSI TERBARU (5 Terakhir)
-        // Perbaikan: Pakai kolom 'tanggal' untuk urutan
+	// 3. TRANSAKSI TERBESAR (Top 5 Berdasarkan Uang)
+        // Perbaikan: Order by grand_total DESC (Uang Terbanyak)
+        // Kita gunakan query builder agar lebih rapi handling tabel users-nya
         $transaksiTerbaru = $db->query("
             SELECT sales.*, users.username as kasir
             FROM sales
             LEFT JOIN users ON sales.user_id = users.id
-            ORDER BY sales.tanggal DESC
+            ORDER BY sales.grand_total DESC
             LIMIT 5
         ")->getResultArray();
 
         // --- D. DATA PESAN MASUK (INBOX) ---
         // Ambil pesan yang ditujukan untuk Role yang sedang login
         $roleSaya = session()->get('role');
-        
-        $pesanMasuk = $db->table('messages')
-                         ->where('target_role', $roleSaya)
-                         ->orderBy('created_at', 'DESC')
-                         ->get()->getResultArray();
-
-        $data = [
+	$messageModel = new \App\Models\MessageModel();
+	$pesanMasuk = $messageModel->where('target_role', $roleSaya)
+                                   ->where('is_read', 0)
+                                   ->orderBy('created_at', 'DESC')
+                                   ->findAll();        
+            $data = [
             'title' => 'Dashboard Utama',
             'user_role' => session()->get('role'),
             
@@ -98,10 +108,43 @@ class Dashboard extends BaseController
             'stok_menipis'    => $stokMenipis,
             'transaksi_baru'  => $transaksiTerbaru,
             
-            // DATA BARU: Inbox Pesan
-            'pesan_masuk'     => $pesanMasuk
-        ];
+            // DATA Inbox Pesan
+            'pesan_masuk'     => $pesanMasuk,
+             
+	    // KIRIM STATUS ABSEN KE VIEW
+            'sudah_absen'     => $sudahAbsen ? true : false,
+            'jam_absen'       => $sudahAbsen ? $sudahAbsen['jam_masuk'] : '-'
+   
+	];
 
         return view('overview', $data);
     }
+
+    public function absen_masuk()
+    {
+        if (!session()->get('isLoggedIn')) { return redirect()->to('/login'); }
+
+        $attModel = new \App\Models\AttendanceModel();
+        $userId   = session()->get('id');
+        $today    = date('Y-m-d');
+
+        // Cek apakah sudah absen hari ini? (Double Check)
+        $cek = $attModel->where('user_id', $userId)->where('tanggal', $today)->first();
+        
+        if ($cek) {
+            return redirect()->to('/dashboard')->with('error', 'Anda sudah absen hari ini!');
+        }
+
+        // Simpan Absensi
+        $attModel->save([
+            'user_id'       => $userId,
+            'nama_karyawan' => session()->get('nama_lengkap') ?? session()->get('username'), // Fallback ke username kalau nama null
+            'tanggal'       => $today,
+            'jam_masuk'     => date('H:i:s'),
+            'status'        => 'Hadir'
+        ]);
+
+        return redirect()->to('/dashboard')->with('success', 'Berhasil Absen! Selamat bekerja.');
+    }
+
 }

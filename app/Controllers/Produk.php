@@ -37,7 +37,7 @@ class Produk extends BaseController
             'products' => $productModel->findAll()
         ];
 
-        return view('produk_view', $data);
+        return view('produk/index', $data);
     }
 
     public function create()
@@ -113,4 +113,25 @@ class Produk extends BaseController
 
         return redirect()->to('/produk')->with('success', 'Stok berhasil ditambahkan!');
     }
+
+    // Fungsi untuk memproses Edit Barang
+    public function update($id)
+    {
+        $productModel = new \App\Models\ProductModel();
+
+        // 1. Ambil data dari Form Modal
+        $data = [
+            'nama_barang' => $this->request->getPost('nama_barang'),
+            'harga_beli'  => $this->request->getPost('harga_beli'),
+            'harga_jual'  => $this->request->getPost('harga_jual'),
+            // Stok tidak kita update disini demi keamanan akuntansi
+        ];
+
+        // 2. Update ke Database
+        $productModel->update($id, $data);
+
+        // 3. Kembali ke halaman produk
+        return redirect()->to('/produk')->with('success', 'Data barang berhasil diperbarui!');
+    }
+
 }

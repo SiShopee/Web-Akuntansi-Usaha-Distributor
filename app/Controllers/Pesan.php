@@ -35,4 +35,20 @@ class Pesan extends BaseController
 
         return redirect()->to('/dashboard')->with('success', 'Pesan berhasil dikirim!');
     }
+
+    public function baca($id)
+    {
+        // Cek Login
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
+
+        $model = new \App\Models\MessageModel();
+        
+        // Update status is_read jadi 1 (Sudah dibaca)
+        $model->update($id, ['is_read' => 1]);
+
+        return redirect()->to('/dashboard')->with('success', 'Pesan ditandai selesai!');
+    }
+
 }

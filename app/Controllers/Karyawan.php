@@ -110,8 +110,21 @@ class Karyawan extends BaseController
     // --- FITUR HAPUS (Bonus, biar lengkap) ---
     public function delete($id)
     {
-        $this->employeeModel->delete($id);
-        return redirect()->to('/karyawan')->with('success', 'Data karyawan berhasil dihapus.');
-    }
+        $employeeModel = new \App\Models\EmployeeModel();
+        
+        // Panggil Database Manager
+        $db = \Config\Database::connect();
 
+        // 1. HAPUS DULU DATA GAJI (PAYROLL) MILIK DIA
+        // Kita pakai Query Builder manual agar lebih aman
+        $db->table('payroll')->where('employee_id', $id)->delete();
+
+        // 2. HAPUS DULU DATA ABSENSI (ATTENDANCE) MILIK DIA
+        $db->table('attendance')->where('user_id', $id)->delete();
+
+        // 3. BARU HAPUS DATA KARYAWANNYA (PARENT)
+        $employeeModel->delete($id);
+
+        return redirect()->to('/karyawan')->with('success', 'Data karyawan beserta riwayat gaji & absensinya berhasil dihapus.');
+    }
 }
